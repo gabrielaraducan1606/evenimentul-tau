@@ -17,6 +17,7 @@ import MarturiiNunta from './pages/Nunta/MarturiiNunta/MarturiiNunta';
 import TavitaNunta from './pages/Nunta/Tavite/TavitaNunta';
 import DecorNunta from './pages/Nunta/DecorNunta/DecorNunta';
 
+import Trusouri from './pages/Botez/Trusouri/Trusouri';
 import InvitatiiBotez from './pages/Botez/InvitatiiBotez/InvitatiiBotez';
 import TavitaBotez from './pages/Botez/Tăvițe/TavitaBotez';
 import Baita from './pages/Botez/Băiță/Baita';
@@ -48,6 +49,7 @@ function App() {
 <Route path="/nunta/decor" element={<DecorNunta />} />
 <Route path="/nunta/tavite" element={<TavitaNunta />} />
 
+<Route path="/botez/trusouri" element={<Trusouri />} />
 <Route path="/botez/invitatii" element={<InvitatiiBotez />} />
 <Route path="/botez/tavita" element={<TavitaBotez />} />
 <Route path="/botez/baita" element={<Baita />} />

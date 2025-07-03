@@ -14,6 +14,8 @@ const menuData = {
       { label: 'Decor nuntă', link: '/nunta/decor' }
     ],
     Botez: [
+      { label: 'Invitații Botez', link: '/botez/invitatii' },
+      { label: 'Trusouri', link: '/botez/trusouri' },
       { label: 'Tăviță moț', link: '/botez/tavita' },
       { label: 'Set băiță', link: '/botez/baita' },
       { label: 'Mărturii botez', link: '/botez/marturii' },

@@ -119,6 +119,81 @@ export const productsData = {
         },
         // Adaugă alte tăvițe pentru botez
       ],
+
+      invitatiiBotez: [
+        {
+          id: 1,
+          title: 'Invitație Botez cu Trandafiri',
+          image: '/images/invitatii-botez/trandafiri.jpg',
+          description: 'Invitație elegantă pentru botez, decorată cu trandafiri albi.',
+          price: '4.00 RON / buc',
+        },
+        {
+          id: 2,
+          title: 'Invitație Botez cu Detalii Aurii',
+          image: '/images/invitatii-botez/aurii.jpg',
+          description: 'Invitație cu detalii aurii, perfectă pentru botezul unui băiețel.',
+          price: '5.00 RON / buc',
+        },
+        {
+          id: 3,
+          title: 'Invitație Botez Modernă',
+          image: '/images/invitatii-botez/modern.jpg',
+          description: 'Invitație modernă cu design simplu, pentru botezuri contemporane.',
+          price: '3.50 RON / buc',
+        },
+        // Adaugă alte invitații pentru botez
+      ],
+
+      trusouri: [
+        {
+          id: 1,
+          title: 'Trusou Nuntă Elegant',
+          image: '/images/trusouri/nunta-elegant.jpg',
+          description: 'Trusou complet pentru nuntă, cu detalii elegante și personalizate.',
+          price: '150.00 RON / set',
+        },
+        {
+          id: 2,
+          title: 'Trusou Botez cu Detalii Aurii',
+          image: '/images/trusouri/botez-aurii.jpg',
+          description: 'Trusou pentru botez cu detalii aurii, perfect pentru un băiețel.',
+          price: '120.00 RON / set',
+        },
+        {
+          id: 3,
+          title: 'Trusou Botez Floral',
+          image: '/images/trusouri/botez-floral.jpg',
+          description: 'Trusou elegant cu flori delicate, ideal pentru botezul unei fetițe.',
+          price: '130.00 RON / set',
+        },
+        // Adaugă alte trusouri
+      ],
       
+      baita: [
+        {
+          id: 1,
+          title: 'Set Băiță cu Detalii Florale',
+          image: '/images/baita/baita-floral.jpg',
+          description: 'Set băiță personalizat cu detalii florale delicate, ideal pentru ceremonia de a doua zi.',
+          price: '60.00 RON / set',
+        },
+        {
+          id: 2,
+          title: 'Set Băiță Elegant cu Lămpi',
+          image: '/images/baita/baita-lampi.jpg',
+          description: 'Set băiță elegant cu lămpi pentru o atmosferă romantică.',
+          price: '75.00 RON / set',
+        },
+        {
+          id: 3,
+          title: 'Set Băiță Modern cu Accesorii Aurii',
+          image: '/images/baita/baita-aurii.jpg',
+          description: 'Set băiță modern cu accesorii aurii, pentru un stil rafinat.',
+          price: '80.00 RON / set',
+        },
+        // Adaugă alte seturi pentru băiță
+      ],
+
   };
   
