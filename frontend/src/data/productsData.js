@@ -169,7 +169,7 @@ export const productsData = {
         },
         // Adaugă alte trusouri
       ],
-      
+
       baita: [
         {
           id: 1,
@@ -195,5 +195,55 @@ export const productsData = {
         // Adaugă alte seturi pentru băiță
       ],
 
+      marturiiBotez: [
+        {
+          id: 1,
+          title: 'Marturie Botez cu Trandafiri',
+          image: '/images/marturii-botez/trandafiri.jpg',
+          description: 'Marturie personalizată cu trandafiri albi și detalii delicate.',
+          price: '3.50 RON / buc',
+        },
+        {
+          id: 2,
+          title: 'Marturie Botez cu Lămpi Aurii',
+          image: '/images/marturii-botez/lampi-aurii.jpg',
+          description: 'Marturie elegantă cu lămpi aurii pentru un botez sofisticat.',
+          price: '4.00 RON / buc',
+        },
+        {
+          id: 3,
+          title: 'Marturie Botez Floral',
+          image: '/images/marturii-botez/floral.jpg',
+          description: 'Marturie cu flori naturale, perfectă pentru un botez plin de culoare.',
+          price: '5.00 RON / buc',
+        },
+        // Adaugă alte marturii pentru botez
+      ],
+
+      decorBotez: [
+        {
+          id: 1,
+          title: 'Decor Floral Botez',
+          image: '/images/decor-botez/floral.jpg',
+          description: 'Decor floral elegant pentru botez, cu flori naturale.',
+          price: '100.00 RON / set',
+        },
+        {
+          id: 2,
+          title: 'Lămpi de Ambianță pentru Botez',
+          image: '/images/decor-botez/lampi.jpg',
+          description: 'Lămpi de ambianță pentru a crea o atmosferă plăcută la botez.',
+          price: '50.00 RON / set',
+        },
+        {
+          id: 3,
+          title: 'Decor Modern pentru Botez',
+          image: '/images/decor-botez/modern.jpg',
+          description: 'Decor minimalist, modern pentru botezul unui băiețel.',
+          price: '120.00 RON / set',
+        },
+        // Adaugă alte decoruri pentru botez
+      ],
+      
   };
   

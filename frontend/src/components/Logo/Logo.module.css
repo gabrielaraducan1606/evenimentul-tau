@@ -4,6 +4,7 @@
     gap: 0.5rem;
     position: absolute;
     padding-top:50px;
+    cursor: pointer;
   }
   
   .logoImage {
