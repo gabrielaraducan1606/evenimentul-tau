@@ -1,0 +1,73 @@
+/* SiteInvitatiiNunta.module.css */
+
+.container {
+    padding: 4rem;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #555;
+  }
+  
+  .form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  
+  .formGroup {
+    margin-bottom: 1.5rem;
+  }
+  
+  label {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  
+  input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  .generateButton {
+    background-color: #f4b5b2;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .generateButton:hover {
+    background-color: #e79d99;
+  }
+  
+  .invitationPreview {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .invitationPreview a {
+    color: #f4b5b2;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  

@@ -1,0 +1,23 @@
+.logoWrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: absolute;
+    padding-top:50px;
+  }
+  
+  .logoImage {
+    object-fit: contain;
+    display: block;
+  }
+  
+  .logoFallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e5e7eb; /* gray-200 */
+    color: #4b5563; /* gray-600 */
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }

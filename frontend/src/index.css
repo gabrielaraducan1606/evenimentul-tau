@@ -1,0 +1,14 @@
+:root {
+  --blush: #ec4899;
+  --blush-dark: #db2777;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-400: #9ca3af;
+  --gray-800: #1f2937;
+
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+
+  --radius: 1.25rem;
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
