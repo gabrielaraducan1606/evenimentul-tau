@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import styles from './Navbar.module.css';
-import { FaUser } from 'react-icons/fa';
+import { FaUser, FaSignOutAlt } from 'react-icons/fa';
 
 const menuData = {
   Servicii: {
@@ -42,6 +42,19 @@ const menuData = {
 const Navbar = () => {
   const [activeMain, setActiveMain] = useState(null);
   const [activeSub, setActiveSub] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    setIsAuthenticated(!!token);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    setIsAuthenticated(false);
+    navigate('/'); // Redirecționează la home sau login
+  };
 
   return (
     <header className={styles.header}>
@@ -63,47 +76,43 @@ const Navbar = () => {
             >
               <span className={styles.anav}>{label}</span>
 
-              {/* SERVICII cu subcategorii */}
               {label === 'Servicii' && activeMain === 'Servicii' && (
-  <div
-    className={styles.dropdownWrapper}
-    onMouseEnter={() => setActiveMain('Servicii')}
-    onMouseLeave={() => {
-      setActiveMain(null);
-      setActiveSub(null);
-    }}
-  >
-    <div className={styles.dropdownColumns}>
-      {Object.entries(value).map(([sub, items]) => (
-        <div
-          key={sub}
-          className={styles.dropdownItem}
-          onMouseEnter={() => setActiveSub(sub)}
-        >
-          <div className={styles.dropdownTitle}>{sub}</div>
-
-          {/* Nivel 3: Sub-opțiuni */}
-          {activeSub === sub && (
-            <div className={styles.subDropdown}>
-              {items.map((item, i) => (
-                <Link
-                  to={item.link}
-                  key={i}
-                  className={styles.dropdownSubItem}
+                <div
+                  className={styles.dropdownWrapper}
+                  onMouseEnter={() => setActiveMain('Servicii')}
+                  onMouseLeave={() => {
+                    setActiveMain(null);
+                    setActiveSub(null);
+                  }}
                 >
-                  {item.label} {item.locked && '🔒'}
-                </Link>
-              ))}
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-  </div>
-)}
+                  <div className={styles.dropdownColumns}>
+                    {Object.entries(value).map(([sub, items]) => (
+                      <div
+                        key={sub}
+                        className={styles.dropdownItem}
+                        onMouseEnter={() => setActiveSub(sub)}
+                      >
+                        <div className={styles.dropdownTitle}>{sub}</div>
 
+                        {activeSub === sub && (
+                          <div className={styles.subDropdown}>
+                            {items.map((item, i) => (
+                              <Link
+                                to={item.link}
+                                key={i}
+                                className={styles.dropdownSubItem}
+                              >
+                                {item.label} {item.locked && '🔒'}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
-              {/* MENIURI SIMPLE */}
               {label !== 'Servicii' && activeMain === label && Array.isArray(value) && (
                 <div className={styles.dropdownWrapper}>
                   {value.map((item, i) => (
@@ -117,10 +126,31 @@ const Navbar = () => {
           ))}
         </nav>
 
-        <Link to="/creeaza-cont" className={styles.accountButton}>
-          <FaUser className={styles.accountIcon} />
-          Creare cont
-        </Link>
+        <div className={styles.accountArea}>
+        {isAuthenticated ? (
+  <div className={styles.accountMenu}>
+    <button
+      className={styles.menuToggle}
+      onClick={() => setActiveMain(activeMain === 'account' ? null : 'account')}
+    >
+      ☰
+    </button>
+    {activeMain === 'account' && (
+      <div className={styles.dropdownMenu}>
+        <Link to="/profil" className={styles.dropdownItem}>Profilul meu</Link>
+        <Link to="/schimba-parola" className={styles.dropdownItem}>Schimbă parola</Link>
+        <button onClick={handleLogout} className={styles.dropdownItem}>Deconectare</button>
+      </div>
+    )}
+  </div>
+) : (
+  <Link to="/creeaza-cont" className={styles.accountButton}>
+    <FaUser className={styles.accountIcon} />
+    Creare cont
+  </Link>
+)}
+
+        </div>
       </div>
     </header>
   );

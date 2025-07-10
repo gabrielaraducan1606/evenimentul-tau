@@ -24,6 +24,10 @@ import Baita from './pages/Botez/Băiță/Baita';
 import MarturiiBotez from './pages/Botez/MărturiiBotez/MarturiiBotez';
 import DecorBotez from './pages/Botez/DecorBotez/DecorBotez';
 
+import RegisterForm from './pages/RegisterForm';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+import Login from './pages/LoginForm';
+
 function Home() {
   return (
     <>
@@ -55,6 +59,10 @@ function App() {
 <Route path="/botez/baita" element={<Baita />} />
 <Route path="/botez/marturii" element={<MarturiiBotez />} />
 <Route path="/botez/decor" element={<DecorBotez />} />
+
+<Route path="/creeaza-cont" element={<RegisterForm />} />
+<Route path="/autentificare" element={<Login />} />
+<Route path="/profil" element={<ProfilePage />} /> 
     </Routes>
   );
 }
