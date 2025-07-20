@@ -1,8 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import styles from './Navbar.module.css';
-import { FaUser, FaSignOutAlt } from 'react-icons/fa';
+import {
+  FaUser,
+  FaHeart,
+  FaShoppingCart,
+  FaUserCircle,
+  FaPowerOff,
+  FaKey
+} from 'react-icons/fa';
+import { jwtDecode } from 'jwt-decode';
+import { useAppContext } from '../Context/AppContext';
 
 const menuData = {
   Servicii: {
@@ -43,17 +52,27 @@ const Navbar = () => {
   const [activeMain, setActiveMain] = useState(null);
   const [activeSub, setActiveSub] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
+  const { favorites, cart } = useAppContext();
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
-    setIsAuthenticated(!!token);
+    if (token) {
+      setIsAuthenticated(true);
+      try {
+        const decoded = jwtDecode(token);
+        setUserEmail(decoded.email || '');
+      } catch (err) {
+        console.error('Eroare la decodarea tokenului:', err);
+      }
+    }
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
     setIsAuthenticated(false);
-    navigate('/'); // Redirecționează la home sau login
+    navigate('/');
   };
 
   return (
@@ -93,7 +112,6 @@ const Navbar = () => {
                         onMouseEnter={() => setActiveSub(sub)}
                       >
                         <div className={styles.dropdownTitle}>{sub}</div>
-
                         {activeSub === sub && (
                           <div className={styles.subDropdown}>
                             {items.map((item, i) => (
@@ -113,43 +131,81 @@ const Navbar = () => {
                 </div>
               )}
 
-              {label !== 'Servicii' && activeMain === label && Array.isArray(value) && (
-                <div className={styles.dropdownWrapper}>
-                  {value.map((item, i) => (
-                    <Link key={i} to={item.link} className={styles.dropdownItem}>
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
+              {label !== 'Servicii' &&
+                activeMain === label &&
+                Array.isArray(value) && (
+                  <div className={styles.dropdownWrapper}>
+                    {value.map((item, i) => (
+                      <Link
+                        key={i}
+                        to={item.link}
+                        className={styles.dropdownItem}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
             </div>
           ))}
         </nav>
 
-        <div className={styles.accountArea}>
-        {isAuthenticated ? (
-  <div className={styles.accountMenu}>
-    <button
-      className={styles.menuToggle}
-      onClick={() => setActiveMain(activeMain === 'account' ? null : 'account')}
-    >
-      ☰
-    </button>
-    {activeMain === 'account' && (
-      <div className={styles.dropdownMenu}>
-        <Link to="/profil" className={styles.dropdownItem}>Profilul meu</Link>
-        <Link to="/schimba-parola" className={styles.dropdownItem}>Schimbă parola</Link>
-        <button onClick={handleLogout} className={styles.dropdownItem}>Deconectare</button>
-      </div>
-    )}
-  </div>
-) : (
-  <Link to="/creeaza-cont" className={styles.accountButton}>
-    <FaUser className={styles.accountIcon} />
-    Creare cont
-  </Link>
-)}
+        <div className={styles.iconGroup}>
+          <Link to="/favorite" className={styles.iconButton}>
+            <FaHeart />
+            {favorites.length > 0 && (
+              <span className={styles.badge}>{favorites.length}</span>
+            )}
+          </Link>
 
+          <Link to="/cos" className={styles.iconButton}>
+            <FaShoppingCart />
+            {cart.reduce((acc, item) => acc + item.quantity, 0) > 0 && (
+  <span className={styles.badge}>
+    {cart.reduce((acc, item) => acc + item.quantity, 0)}
+  </span>
+)}
+          </Link>
+
+          {isAuthenticated ? (
+            <div className={styles.accountMenu}>
+              <button
+                className={styles.menuToggle}
+                onClick={() =>
+                  setActiveMain(activeMain === 'account' ? null : 'account')
+                }
+              >
+                ☰
+              </button>
+              {activeMain === 'account' && (
+                <div className={styles.dropdownMenu}>
+                  <div className={styles.dropdownItem}>
+                    <FaUserCircle className={styles.dropdownIcon} />
+                    <div>
+                      <strong>Profilul meu</strong>
+                      <div className={styles.emailText}>{userEmail}</div>
+                    </div>
+                  </div>
+                  <Link to="/schimba-parola" className={styles.dropdownItem}>
+                    <FaKey className={styles.dropdownIcon} />
+                    Schimbă parola
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className={styles.dropdownItem}
+                  >
+                    <FaPowerOff className={styles.dropdownIcon} />
+                    Deconectare
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link to="/creeaza-cont" className={styles.accountButton}>
+              <FaUser className={styles.accountIcon} />
+              Creare cont
+            </Link>
+          )}
         </div>
       </div>
     </header>

@@ -1,5 +1,3 @@
-/* === NAVBAR STRUCTURĂ === */
-
 .header {
   position: sticky;
   top: 0;
@@ -12,9 +10,9 @@
 
 .headerBar {
   max-width: 1280px;
-  height: 60px;
+  height: 64px;
   margin: 0 auto;
-  padding: 1rem 1.5rem;
+  padding: 0 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -23,19 +21,15 @@
 .logoHeader {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-}
-
-.divNav {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
+  flex-shrink: 0;
 }
 
 .nav {
   display: flex;
   gap: 2rem;
-  position: relative;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
 }
 
 .navItem {
@@ -71,7 +65,7 @@
   width: 100%;
 }
 
-/* === DROPDOWN STRUCTURĂ === */
+/* === DROPDOWN === */
 
 .dropdownWrapper {
   position: absolute;
@@ -88,7 +82,6 @@
   min-width: 220px;
 }
 
-/* Coloană pentru submeniuri (ex: Nuntă, Botez, Planificare) */
 .dropdownColumns {
   display: flex;
   flex-direction: column;
@@ -102,9 +95,8 @@
 .dropdownTitle {
   font-weight: 600;
   color: #111827;
-  padding-bottom: 0.25rem;
   font-size: 0.9rem;
-  cursor: default;
+  padding-bottom: 0.25rem;
 }
 
 .dropdownTitle:hover {
@@ -136,13 +128,13 @@
   color: #ec4899;
 }
 
-/* === BUTON CONT === */
+/* === CONT === */
 
 .accountButton {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: var(--blush, #ec4899);
+  background-color: #ec4899;
   color: white;
   font-size: 0.875rem;
   font-weight: 600;
@@ -154,7 +146,7 @@
 }
 
 .accountButton:hover {
-  background-color: var(--blush-dark, #db2777);
+  background-color: #db2777;
   transform: translateY(-1px);
 }
 
@@ -164,13 +156,111 @@
   line-height: 1;
 }
 
-/* === BARĂ VERTICALĂ === */
+/* === ICON GROUP === */
 
-.verticalBar {
-  width: 1px;
-  height: 24px;
-  background-color: #ffe4e6;
-  margin-left: 1rem;
+.iconGroup {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-left: auto;
+}
+
+.iconButton {
+  position: relative;
+  font-size: 1.4rem;
+  color: #ec4899;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.iconButton:hover {
+  color: #db2777;
+}
+
+/* === BADGE === */
+
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -15px;
+  width: 16px;
+  height: 16px;
+  background-color: #ec4899;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid white;
+  line-height: 1;
+}
+
+
+/* === MENU TOGGLE === */
+
+.accountMenu {
+  position: relative;
+}
+
+.menuToggle {
+  background: #ec4899;
+  border: none;
+  color: white;
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.menuToggle:hover {
+  background-color: #db2777;
+}
+
+.dropdownMenu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  min-width: 220px;
+  z-index: 99;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+  color: #1f2937;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dropdownItem:hover {
+  background-color: #f3f4f6;
+  border-radius: 0.5rem;
+}
+
+.dropdownIcon {
+  font-size: 1rem;
+  color: #ec4899;
+}
+
+.emailText {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.2rem;
 }
 
 /* === RESPONSIVE === */
@@ -200,56 +290,8 @@
   .accountButton {
     align-self: flex-end;
   }
-}
 
-.accountMenu {
-  position: relative;
-}
-
-.menuToggle {
-  background: #ec4899;
-  border: none;
-  color: white;
-  padding: 0.5rem 1.25rem;
-  border-radius: 999px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease;
-}
-
-.menuToggle:hover {
-  background-color: #db2777;
-}
-
-.dropdownMenu {
-  position: absolute;
-  top: 110%;
-  right: 0;
-  background: white;
-  border: 1px solid #f3f4f6;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  min-width: 180px;
-  z-index: 100;
-}
-
-.dropdownItem {
-  padding: 0.75rem 1rem;
-  color: #374151;
-  text-decoration: none;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  text-align: left;
-  background: none;
-  border: none;
-}
-
-.dropdownItem:hover {
-  background-color: #fce7f3;
-  color: #db2777;
+  .iconGroup {
+    align-self: flex-end;
+  }
 }

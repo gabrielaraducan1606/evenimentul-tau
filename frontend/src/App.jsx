@@ -10,7 +10,6 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import StartEvent from './components/StartEvent/StartEvent';
 
-
 import InvitatiiNunta from './pages/Nunta/InvitatiiNunta/InvitatiiNunta';
 import SiteInvitatiiNunta from './pages/Nunta/SiteInvitatiiNunta/SiteInvitatiiNunta';
 import MarturiiNunta from './pages/Nunta/MarturiiNunta/MarturiiNunta';
@@ -24,9 +23,14 @@ import Baita from './pages/Botez/Băiță/Baita';
 import MarturiiBotez from './pages/Botez/MărturiiBotez/MarturiiBotez';
 import DecorBotez from './pages/Botez/DecorBotez/DecorBotez';
 
+import FavoritePage from './components/FavoritePage/FavoritePage';
+import CosPage from './components/CosPage/CosPage';
+
 import RegisterForm from './pages/RegisterForm';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import Login from './pages/LoginForm';
+
+import { AppProvider } from './components/Context/AppContext';
 
 function Home() {
   return (
@@ -44,26 +48,37 @@ function Home() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/start" element={<StartEvent />} />
-      <Route path="/nunta/invitatii" element={<InvitatiiNunta />} />
-<Route path="/nunta/site-invitatii" element={<SiteInvitatiiNunta />} />
-<Route path="/nunta/marturii" element={<MarturiiNunta />} />
-<Route path="/nunta/decor" element={<DecorNunta />} />
-<Route path="/nunta/tavite" element={<TavitaNunta />} />
+    <AppProvider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/start" element={<StartEvent />} />
 
-<Route path="/botez/trusouri" element={<Trusouri />} />
-<Route path="/botez/invitatii" element={<InvitatiiBotez />} />
-<Route path="/botez/tavita" element={<TavitaBotez />} />
-<Route path="/botez/baita" element={<Baita />} />
-<Route path="/botez/marturii" element={<MarturiiBotez />} />
-<Route path="/botez/decor" element={<DecorBotez />} />
+        {/* Nuntă */}
+        <Route path="/nunta/invitatii" element={<InvitatiiNunta />} />
+        <Route path="/nunta/site-invitatii" element={<SiteInvitatiiNunta />} />
+        <Route path="/nunta/marturii" element={<MarturiiNunta />} />
+        <Route path="/nunta/decor" element={<DecorNunta />} />
+        <Route path="/nunta/tavite" element={<TavitaNunta />} />
 
-<Route path="/creeaza-cont" element={<RegisterForm />} />
-<Route path="/autentificare" element={<Login />} />
-<Route path="/profil" element={<ProfilePage />} /> 
-    </Routes>
+        {/* Botez */}
+        <Route path="/botez/trusouri" element={<Trusouri />} />
+        <Route path="/botez/invitatii" element={<InvitatiiBotez />} />
+        <Route path="/botez/tavita" element={<TavitaBotez />} />
+        <Route path="/botez/baita" element={<Baita />} />
+        <Route path="/botez/marturii" element={<MarturiiBotez />} />
+        <Route path="/botez/decor" element={<DecorBotez />} />
+
+        <Route path="/favorite" element={<FavoritePage />} />
+        <Route path="/cos" element={<CosPage />} />
+
+        {/* Autentificare */}
+        <Route path="/creeaza-cont" element={<RegisterForm />} />
+        <Route path="/autentificare" element={<Login />} />
+        <Route path="/profil" element={<ProfilePage />} />
+
+
+      </Routes>
+    </AppProvider>
   );
 }
 
