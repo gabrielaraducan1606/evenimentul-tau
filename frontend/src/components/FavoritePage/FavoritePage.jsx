@@ -11,16 +11,21 @@ const FavoritePage = () => {
     setFavorites((prev) => prev.filter((item) => item.id !== id));
   };
 
+  // Elimină duplicatele folosind un Map
+  const uniqueFavorites = Array.from(
+    new Map(favorites.map(item => [item.id, item])).values()
+  );
+
   return (
     <>
       <Navbar />
       <div className={styles.container}>
         <h1 className={styles.title}>❤️ Lista mea de favorite</h1>
-        {favorites.length === 0 ? (
+        {uniqueFavorites.length === 0 ? (
           <p className={styles.empty}>Nu ai produse în lista de favorite.</p>
         ) : (
           <div className={styles.grid}>
-            {favorites.map((product) => (
+            {uniqueFavorites.map((product) => (
               <div key={product.id} className={styles.card}>
                 <img src={product.image} alt={product.title} className={styles.image} />
                 <h3 className={styles.productTitle}>{product.title}</h3>

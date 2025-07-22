@@ -1,75 +1,134 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import axios from 'axios';
 
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
   const [cart, setCart] = useState([]);
+  const [token, setToken] = useState(localStorage.getItem('authToken'));
 
+  // ================== LOAD USER DATA ==================
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    setCart(storedCart);
-    setFavorites(storedFavorites);
+    const loadUserData = async () => {
+      const storedToken = localStorage.getItem('authToken');
+      if (!storedToken) return;
+
+      try {
+        const res = await axios.post(
+          `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/users/login-token`,
+          {},
+          { headers: { Authorization: `Bearer ${storedToken}` } }
+        );
+
+        setFavorites(res.data.favorites || []);
+        setCart(res.data.cart || []);
+        setToken(storedToken);
+      } catch (err) {
+        console.error('Eroare la încărcarea datelor utilizatorului', err);
+      }
+    };
+
+    loadUserData();
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart]);
+  // ================== SAVE TO BACKEND ==================
+  const saveToBackend = async (cartData = cart, favData = favorites) => {
+    if (!token) return;
+    try {
+      await axios.post(
+        `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/users/save-data`,
+        {
+          cart: cartData,
+          favorites: favData
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` }
+        }
+      );
+    } catch (err) {
+      console.error('Eroare la salvarea datelor:', err);
+    }
+  };
 
-  useEffect(() => {
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-  }, [favorites]);
-
+  // ================== FAVORITES ==================
   const addToFavorites = (product) => {
     setFavorites((prev) => {
       if (!prev.some((p) => p.id === product.id)) {
-        return [...prev, product];
+        const updated = [...prev, product];
+        saveToBackend(cart, updated);
+        return updated;
       }
       return prev;
     });
   };
 
+  const removeFromFavorites = (id) => {
+    setFavorites((prev) => {
+      const updated = prev.filter((item) => item.id !== id);
+      saveToBackend(cart, updated);
+      return updated;
+    });
+  };
+
+  // ================== CART ==================
   const addToCart = (product) => {
     setCart((prev) => {
-      const existing = prev.find((p) => p.id === product.id);
-      if (existing) {
-        return prev.map((p) =>
+      const exists = prev.find((p) => p.id === product.id);
+      let updated;
+      if (exists) {
+        updated = prev.map((p) =>
           p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p
         );
       } else {
-        return [...prev, { ...product, quantity: 1 }];
+        updated = [...prev, { ...product, quantity: 1 }];
       }
+      saveToBackend(updated, favorites);
+      return updated;
+    });
+  };
+
+  const removeFromCart = (id) => {
+    setCart((prev) => {
+      const updated = prev.filter((item) => item.id !== id);
+      saveToBackend(updated, favorites);
+      return updated;
     });
   };
 
   const increaseQuantity = (id) => {
-    setCart((prev) =>
-      prev.map((item) =>
+    setCart((prev) => {
+      const updated = prev.map((item) =>
         item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
+      );
+      saveToBackend(updated, favorites);
+      return updated;
+    });
   };
 
   const decreaseQuantity = (id) => {
-    setCart((prev) =>
-      prev.map((item) =>
+    setCart((prev) => {
+      const updated = prev.map((item) =>
         item.id === id && item.quantity > 1
           ? { ...item, quantity: item.quantity - 1 }
           : item
-      )
-    );
+      );
+      saveToBackend(updated, favorites);
+      return updated;
+    });
   };
 
   return (
     <AppContext.Provider
       value={{
-        favorites,
-        setFavorites,
         cart,
+        favorites,
         setCart,
+        setFavorites,
         addToCart,
         addToFavorites,
+        removeFromCart,
+        removeFromFavorites,
         increaseQuantity,
         decreaseQuantity
       }}

@@ -2,6 +2,7 @@
   max-width: 1200px;
   margin: 2rem auto;
   padding: 1rem;
+  text-align: center;
 }
 
 .title {
@@ -13,6 +14,7 @@
 .subtitle {
   color: #6b7280;
   margin-bottom: 2rem;
+  font-size: 1rem;
 }
 
 .grid {
@@ -28,6 +30,11 @@
   padding: 1rem;
   text-align: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
 }
 
 .image {
@@ -59,27 +66,29 @@
 
 .actions {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
 }
 
 .iconButton {
-  background: none;
+  background-color: #fce7f3;
   border: none;
   color: #ec4899;
   font-size: 1.2rem;
+  padding: 0.5rem;
+  border-radius: 999px;
   cursor: pointer;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 
 .iconButton:hover {
-  color: #db2777;
-  transform: scale(1.2);
+  background-color: #ec4899;
+  color: #fff;
+  transform: scale(1.1);
 }
 
 .detailsButton {
-  margin-left: auto;
   background-color: #ec4899;
   color: white;
   border: none;
