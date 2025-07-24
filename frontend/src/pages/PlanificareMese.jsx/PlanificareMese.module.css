@@ -1,0 +1,76 @@
+/* PlanificareMese.module.css */
+
+.pageWrapper {
+    background: linear-gradient(to right, #f3f4f6, #e5e7eb); /* Fundal subtil pentru o atmosferă premium */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .container {
+    padding: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Umbră subtilă pentru un aspect elegant */
+    margin-top: 3rem;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-family: 'Roboto', sans-serif; /* Font modern */
+  }
+  
+  .infoText {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .buttonGroup {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .registerButton, .loginButton {
+    background-color: #f4b5b2; /* Culoare mai caldă, de tip roz pal, pentru butonul de înregistrare */
+    color: white;
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+    border-radius: 999px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .registerButton:hover, .loginButton:hover {
+    background-color: #e79d99; /* Nuanță mai închisă la hover */
+  }
+  
+  .registerButton svg, .loginButton svg {
+    margin-right: 0.5rem;
+  }
+  
+  /* Butonul de logare */
+  .loginButton {
+    background-color: #db2777; /* Nuanță caldă, un portocaliu subtil, care să se potrivească cu tema */
+  }
+  
+  .loginButton:hover {
+    background-color: #db2777; /* Modificăm la hover pentru logare */
+  }
+  

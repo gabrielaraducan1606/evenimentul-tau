@@ -31,7 +31,7 @@ const menuData = {
       { label: 'Decor bebe', link: '/botez/decor' }
     ],
     Planificare: [
-      { label: '🪑 Mese invitați', link: '/creeaza-cont', locked: true }
+      { label: '🪑 Mese invitați', link: '/planificare-mese', locked: false }
     ]
   },
   Portofoliu: [
@@ -161,10 +161,10 @@ const Navbar = () => {
           <Link to="/cos" className={styles.iconButton}>
             <FaShoppingCart />
             {cart.reduce((acc, item) => acc + item.quantity, 0) > 0 && (
-  <span className={styles.badge}>
-    {cart.reduce((acc, item) => acc + item.quantity, 0)}
-  </span>
-)}
+              <span className={styles.badge}>
+                {cart.reduce((acc, item) => acc + item.quantity, 0)}
+              </span>
+            )}
           </Link>
 
           {isAuthenticated ? (
@@ -194,18 +194,21 @@ const Navbar = () => {
                     onClick={handleLogout}
                     className={styles.dropdownItem}
                   >
-                    <FaPowerOff className={styles.dropdownIcon} />
+                    <FaPowerOff className={styles.dropdownIcon1} />
                     Deconectare
                   </button>
                 </div>
               )}
             </div>
           ) : (
-            <Link to="/creeaza-cont" className={styles.accountButton}>
+            <Link to="/login" className={styles.accountButton}>
               <FaUser className={styles.accountIcon} />
-              Creare cont
+              Loghează-te
             </Link>
           )}
+
+          {/* Adăugăm link-ul pentru pagina de planificare mese */}
+          
         </div>
       </div>
     </header>

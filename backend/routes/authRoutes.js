@@ -87,4 +87,17 @@ router.post('/save-data', auth, async (req, res) => {
   }
 });
 
+router.get('/profil', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    if (!user) {
+      return res.status(404).json({ msg: 'Utilizatorul nu a fost găsit' });
+    }
+    res.json(user);
+  } catch (err) {
+    console.error('❌ Eroare la obținerea profilului:', err);
+    res.status(500).json({ msg: 'Eroare la obținerea profilului' });
+  }
+});
+
 module.exports = router;

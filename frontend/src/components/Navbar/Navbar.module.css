@@ -1,3 +1,5 @@
+/* === GENERAL === */
+
 .header {
   position: sticky;
   top: 0;
@@ -138,7 +140,7 @@
   color: white;
   font-size: 0.875rem;
   font-weight: 600;
-  padding: 0.5rem 1.25rem;
+  padding: 0.4rem 1rem;
   border-radius: 999px;
   text-decoration: none;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -163,6 +165,24 @@
   align-items: center;
   gap: 30px;
   margin-left: auto;
+}
+
+/* Modificăm alinierea butonului ☰ */
+.menuToggle {
+  background: none;
+  border: none;
+  color: #ec4899;
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem; /* Dimensiune mai mare pentru vizibilitate */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.menuToggle:hover {
+  color: #db2777;
 }
 
 .iconButton {
@@ -199,11 +219,11 @@
   line-height: 1;
 }
 
-
 /* === MENU TOGGLE === */
 
 .accountMenu {
   position: relative;
+  top: -11px;
 }
 
 .menuToggle {
@@ -221,6 +241,7 @@
 
 .menuToggle:hover {
   background-color: #db2777;
+  color: white;
 }
 
 .dropdownMenu {
@@ -239,7 +260,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0.5rem;
   font-size: 0.875rem;
   color: #1f2937;
   text-decoration: none;
@@ -256,11 +277,29 @@
   font-size: 1rem;
   color: #ec4899;
 }
-
+.dropdownIcon1{
+  color: #ffe4e6;
+}
 .emailText {
   font-size: 0.75rem;
   color: #6b7280;
   margin-top: 0.2rem;
+}
+
+/* Navbar.module.css */
+
+/* Alte stiluri... */
+
+.emailDisplay {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.emailDisplay:hover {
+  text-decoration: underline;
 }
 
 /* === RESPONSIVE === */

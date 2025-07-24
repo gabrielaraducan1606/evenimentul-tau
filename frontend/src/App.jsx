@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-
+import Navbar from './components/Navbar/Navbar';
 import HeroSection from './components/HeroSection/HeroSection';
 import ServiceOverview from './components/ServiceOverview/ServiceOverview';
 import MainCTA from './components/MainCTA/MainCTA';
 import Testimonials from './components/Testimonials/Testimonials';
 import PortfolioGallery from './components/PortofolioGallery/PortfolioGallery';
-import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import StartEvent from './components/StartEvent/StartEvent';
 
@@ -26,11 +25,13 @@ import DecorBotez from './pages/Botez/DecorBotez/DecorBotez';
 import FavoritePage from './components/FavoritePage/FavoritePage';
 import CosPage from './components/CosPage/CosPage';
 
-import RegisterForm from './pages/RegisterForm';
+import RegisterForm from './pages/RegisterForm/RegisterForm';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
-import Login from './pages/LoginForm';
+import Login from './pages/LoginForm/LoginForm';
 
+import PlanificareMese from './pages/PlanificareMese.jsx/PlanificareMese';
 import { AppProvider } from './components/Context/AppContext';
+import { jwtDecode } from 'jwt-decode';
 
 function Home() {
   return (
@@ -47,6 +48,27 @@ function Home() {
 }
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
+
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      setIsAuthenticated(true);
+      try {
+        const decoded = jwtDecode(token);
+        setUserEmail(decoded.email || '');
+      } catch (err) {
+        console.error('Eroare la decodarea tokenului:', err);
+      }
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    setIsAuthenticated(false);
+  };
+
   return (
     <AppProvider>
       <Routes>
@@ -72,11 +94,12 @@ function App() {
         <Route path="/cos" element={<CosPage />} />
 
         {/* Autentificare */}
-        <Route path="/creeaza-cont" element={<RegisterForm />} />
-        <Route path="/autentificare" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/inregistrare" element={<RegisterForm />} />
         <Route path="/profil" element={<ProfilePage />} />
 
-
+        {/* Planificare Mese */}
+        <Route path="/planificare-mese" element={<PlanificareMese isAuthenticated={isAuthenticated} />} />
       </Routes>
     </AppProvider>
   );
